@@ -7,7 +7,7 @@ This code creates an account belonging to connectome in each server (gateway, ma
 1. User ID: ct + 10000~19999 (ex. ct11111)
 2. GID: 10000 (connectome group)
 3. Home dir: /home/connectome/{User ID}
-4. Share dir: /data/connectome/{userid} (in storage)<-> /Scratch/connectome/{userid} (in master, node1, node2)
+4. Share dir: /data/connectome/{userid} (in storage) <-> /Scratch/connectome/{userid} (in master, node1, node2)
 
 
 
