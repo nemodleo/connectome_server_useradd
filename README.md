@@ -12,7 +12,12 @@ This code creates an account belonging to connectome in each server (gateway, ma
 
 
 
-### Auto Prepared (You Do Not Touch This!)
+### Prepared (Hyun already do this!)
+This script (server_adduser_etc.sh) is written for password input format, not ssh key. 
+~~~Bash
+conmaster@gateway:~/server_management$ server_adduser_etc.sh {conmaster passwd}
+~~~
+
 For all servers(gateway, master, node1, node2, storage) should satisfy the following dir tree.
 ~~~Bash
 conmaster@gateway:/etc/connectome$ tree -N
