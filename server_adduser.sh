@@ -7,14 +7,14 @@ userid=ct$uid
 name=$(echo $name_raw | cut -f 1 -d"_")" "$(echo $name_raw | cut -f 2 -d"_")
 
 # adduser in gateway
-sudo adduser -c $name --conf /etc/connectome/adduser.conf --uid $uid $userid
+sudo -S adduser -c $name --conf /etc/connectome/adduser.conf --uid $uid $userid
 
 # adduser in other nodes
 nodes="master node1 node2"
 for node in $nodes; do 
 ssh -T -A conmaster@$node << EOF
 bash
-sudo adduser -c $name --conf /etc/connectome/adduser.conf --uid $uid $userid
+sudo -S  adduser -c $name --conf /etc/connectome/adduser.conf --uid $uid $userid
 cat << DOCKERFILE > /home/connectome/$userid/docker/Dockerfile
 FROM pytorch/pytorch # you can change this line!
 
@@ -49,13 +49,13 @@ USER $userid
 ###
 
 DOCKERFILE
-sudo chown -R $userid:connectome /home/connectome/$userid/docker/Dockerfile
+sudo -S  chown -R $userid:connectome /home/connectome/$userid/docker/Dockerfile
 EOF
 done
 ssh -T -A conmaster@storage << EOF
 bash
-sudo adduser -c $name --conf /etc/connectome/adduser.conf --uid $uid $userid
-sudo mkdir - /data/connectome/$userid
-sudo chown -R $userid:connectome /data/connectome/$userid
+sudo -S  adduser -c $name --conf /etc/connectome/adduser.conf --uid $uid $userid
+sudo -S  mkdir - /data/connectome/$userid
+sudo -S  chown -R $userid:connectome /data/connectome/$userid
 EOF
 
