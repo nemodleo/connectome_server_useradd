@@ -3,6 +3,7 @@
 
 sudoPW=$1
 nodes=(master node1 node2 storage)
+
 for node in ${nodes[@]} 
 do
 	sshpass -p $sudoPW scp -r /etc/connectome conmaster@$node:~/server_management/connectome
