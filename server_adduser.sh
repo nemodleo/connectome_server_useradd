@@ -1,21 +1,26 @@
 #!/bin/bash
 
 uid=$1
-name_raw=$2
+name=$2
 sudoPW=$3
 
 userid=ct$uid
-name=$(echo $name_raw | cut -f 1 -d"_")" "$(echo $name_raw | cut -f 2 -d"_")
 
 # adduser in gateway
-echo $sudoPW | sudo -S adduser -c "$name" --conf /etc/connectome/adduser.conf --uid $uid --disabled-password $userid
+echo $sudoPW | sudo -S adduser --conf /etc/connectome/adduser.conf --uid $uid --disabled-password --gecos "" $userid
+echo $sudoPW | sudo -S usermod -c "$name" $userid
+echo $sudoPW | sudo -S sudo chpasswd <<<"$userid:$userid"
+echo $sudoPW | sudo -S usermod -aG docker $userid
 
 # adduser in other nodes
 nodes="master node1 node2"
 for node in $nodes; do 
 sshpass -p $sudoPW ssh -T -A conmaster@$node << EOF
 bash
-echo $sudoPW | sudo -S adduser -c "$name" --conf /etc/connectome/adduser.conf --uid $uid --disabled-password $userid
+echo $sudoPW | sudo -S adduser --conf /etc/connectome/adduser.conf --uid $uid --disabled-password --gecos "" $userid
+echo $sudoPW | sudo -S usermod -c "$name" $userid
+echo $sudoPW | sudo -S sudo chpasswd <<<"$userid:$userid"
+echo $sudoPW | sudo -S usermod -aG docker $userid
 cat << DOCKERFILE > /home/connectome/$userid/docker/Dockerfile
 FROM pytorch/pytorch #
 
@@ -56,8 +61,11 @@ EOF
 done
 sshpass -p $sudoPW ssh -T -A conmaster@storage << EOF
 bash
-echo $sudoPW | sudo -S adduser -c "$name" --conf /etc/connectome/adduser.conf --uid $uid --disabled-password $userid
-echo $sudoPW | sudo -S mkdir - /data/connectome/$userid
+echo $sudoPW | sudo -S adduser --conf /etc/connectome/adduser.conf --uid $uid --disabled-password --gecos "" $userid
+echo $sudoPW | sudo -S usermod -c "$name" $userid
+echo $sudoPW | sudo -S sudo chpasswd <<<"$userid:$userid"
+echo $sudoPW | sudo -S usermod -aG docker $userid
+echo $sudoPW | sudo -S mkdir -p /data/connectome/$userid
 echo $sudoPW | sudo -S chown -R $userid:connectome /data/connectome/$userid
 EOF
 
