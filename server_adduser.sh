@@ -7,15 +7,6 @@ sudoPW=$3
 userid=ct$uid
 name=$(echo $name_raw | cut -f 1 -d"_")" "$(echo $name_raw | cut -f 2 -d"_")
 
-
-# prepared env #this part need to exec only 1! -> comment!!
-#nodes=(master node1 node2 storage)
-#for node in ${nodes[@]} 
-#do
-#	ssh -A $node "echo '/etc/connectome' | sudo tee /etc"
-#done
-
-
 # adduser in gateway
 echo $sudoPW | sudo -S adduser -c $name --conf /etc/connectome/adduser.conf --uid $uid $userid
 
