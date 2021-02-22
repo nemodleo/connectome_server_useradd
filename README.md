@@ -13,7 +13,8 @@ This code creates an account belonging to connectome in each server (gateway, ma
 
 
 ### Prepared (Hyun already do this!)
-This script (server_adduser_etc.sh) is written for password input format, not ssh key. 
+This script (server_adduser_etc.sh) is written for password input format, not ssh key.   
+If you want to convert content of /etc/connectome/, fixed in gateway and run command below.   
 ~~~Bash
 conmaster@gateway:~/server_management$ server_adduser_etc.sh {conmaster passwd}
 ~~~
