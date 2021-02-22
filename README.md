@@ -35,10 +35,10 @@ conmaster@gateway:/etc/connectome$ tree -N
 ### Run
 
 ~~~Bash
-conmaster@gateway:~/server_management$ ./server_adduser.sh {UID} {First_Lastname no middlename}
+conmaster@gateway:~/server_management$ ./server_adduser.sh {UID} {First_Lastname no middlename} {conmaster passwd}
 
 #example
-conmaster@gateway:~/server_management$ ./server_adduser.sh 11111 Hyun_Park
+conmaster@gateway:~/server_management$ ./server_adduser.sh 11111 Hyun_Park ******
 ~~~
 
 
