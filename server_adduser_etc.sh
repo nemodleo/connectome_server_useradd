@@ -1,7 +1,6 @@
 # prepared env #this part need to exec only 1!
 # ./server_adduser_etc.sh 
 
-sudoPW=$1
 nodes=(master node1 node2 storage)
 for node in ${nodes[@]} 
 do
