@@ -6,26 +6,17 @@ name_raw=$2
 userid=ct$uid
 name=$(echo $name_raw | cut -f 1 -d"_")" "$(echo $name_raw | cut -f 2 -d"_")
 
-
-# prepared env #this part need to exec only 1! -> comment!!
-#nodes=(master node1 node2 storage)
-#for node in ${nodes[@]} 
-#do
-#	ssh -A $node "echo '/etc/connectome' | sudo tee /etc"
-#done
-
-
 # adduser in gateway
-adduser -c $name --conf /etc/connectome/adduser.conf --uid $uid $userid
+sudo adduser -c $name --conf /etc/connectome/adduser.conf --uid $uid $userid
 
 # adduser in other nodes
 nodes="master node1 node2"
 for node in $nodes; do 
 ssh -T -A conmaster@$node << EOF
 bash
-adduser -c $name --conf /etc/connectome/adduser.conf --uid $uid $userid
+sudo adduser -c $name --conf /etc/connectome/adduser.conf --uid $uid $userid
 cat << DOCKERFILE > /home/connectome/$userid/docker/Dockerfile
-FROM pytorch/pytorch #
+FROM pytorch/pytorch # you can change this line!
 
 RUN apt-get update && \
     apt-get -y install sudo 
@@ -43,7 +34,6 @@ EXPOSE 8888
 USER $userid
 
 ###
-
 # If you need other operation, write down on this part!
 
 
@@ -59,13 +49,13 @@ USER $userid
 ###
 
 DOCKERFILE
-chown -R $userid:connectome /home/connectome/$userid/docker/Dockerfile
+sudo chown -R $userid:connectome /home/connectome/$userid/docker/Dockerfile
 EOF
 done
 ssh -T -A conmaster@storage << EOF
 bash
-adduser -c $name --conf /etc/connectome/adduser.conf --uid $uid $userid
-mkdir - /data/connectome/$userid
-chown -R $userid:connectome /data/connectome/$userid
+sudo adduser -c $name --conf /etc/connectome/adduser.conf --uid $uid $userid
+sudo mkdir - /data/connectome/$userid
+sudo chown -R $userid:connectome /data/connectome/$userid
 EOF
 
