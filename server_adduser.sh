@@ -2,8 +2,6 @@
 
 uid=$1
 name=$2
-sudoPW=$3
-
 userid=ct$uid
 
 # adduser in gateway
