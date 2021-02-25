@@ -12,7 +12,7 @@ This code creates an account belonging to connectome in each server (gateway, ma
 
 
 ### Prepared (Hyun already do this!)
-conmaster passwd deleted. `sudo passwd -d conmaster`
+Deleted conmaster passwd. `sudo passwd -d conmaster`
 
 If you want to convert content of /etc/connectome/, fixed in gateway and run command below.   
 ~~~Bash
