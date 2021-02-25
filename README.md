@@ -5,7 +5,7 @@ This code creates an account belonging to connectome in each server (gateway, ma
 
 ### Rules for adding users belonging to connectome:   
 0. UID: 10000~19999 (ex. 11111)
-1. User ID: ct + UID (ex. ct11111)
+1. User ID: ?
 2. GID: 10000 (connectome group)
 3. Home dir: /home/connectome/{User ID}
 4. Share dir: /data/connectome/{User ID} (in storage) <-> /Scratch/connectome/{User ID} (in master, node1, node2)
@@ -33,10 +33,10 @@ conmaster@gateway:/etc/connectome$ tree -N
 ### Run
 
 ~~~Bash
-conmaster@gateway:~/server_management$ ./server_adduser.sh {UID} {First_Lastname no middlename}
+conmaster@gateway:~/server_management$ ./server_adduser.sh {userID} {UID} {First_Lastname}
 
 #example
-conmaster@gateway:~/server_management$ ./server_adduser.sh 11111 Hyun_Park
+conmaster@gateway:~/server_management$ ./server_adduser.sh hyun 11111 Hyun_Park
 ~~~
 
 
