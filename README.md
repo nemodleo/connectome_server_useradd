@@ -13,7 +13,7 @@ This code creates an account belonging to connectome in each server (gateway, ma
 
 ### Prepared (Hyun already do this!)
 
-Add cmd in /etc/sudoers `conmaster ALL=NOPASSWD:ALL` (`echo 'conmaster ALL=NOPASSWD: ALL' >> /etc/sudoers``sudo systemctl restart ssh`)
+Add cmd in /etc/sudoers `conmaster ALL=NOPASSWD:ALL` (`echo 'conmaster ALL=NOPASSWD: ALL' >> /etc/sudoers`)
 
 
 
