@@ -12,7 +12,10 @@ This code creates an account belonging to connectome in each server (gateway, ma
 
 
 ### Prepared (Hyun already do this!)
-Deleted conmaster passwd. `sudo passwd -d conmaster`
+
+Add cmd in /etc/sudoers `conmaster ALL=NOPASSWD:ALL` (`echo 'conmaster ALL=NOPASSWD: ALL' >> /etc/sudoers`)
+
+
 
 If you want to convert content of /etc/connectome/, fixed in gateway and run command below.   
 ~~~Bash
