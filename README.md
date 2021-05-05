@@ -46,3 +46,15 @@ conmaster@gateway:~/server_management$ ./server_adduser.sh hyun 11111 Hyun_Park
 
 
 ### Result
+
+
+
+### Addition issuses
+2021/5/7, Due to the gateway server initialization, user accounts in the gateway must be re-created.
+
+~~~bash
+conmaster@gateway:~/server_management$ ./server_adduser_gateway.sh {userID} {UID} {First_Lastname}
+
+#example
+conmaster@gateway:~/server_management$ ./server_adduser_gateway.sh hyun 11111 Hyun_Park
+~~~
