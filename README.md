@@ -1,7 +1,7 @@
 # connectome_server_adduser
 This repository is for administrators (conmasters) of the Connetome LAB server.   
 This code creates an account belonging to connectome in each server (gateway, master, node1, node2, storage) with the given user ID and UID.   
-** I haven't checked it yet.
+
 
 ### Rules for adding users belonging to connectome:   
 0. UID: 10000~19999 (ex. 11111)
@@ -9,7 +9,6 @@ This code creates an account belonging to connectome in each server (gateway, ma
 2. GID: 10000 (connectome group)
 3. Home dir: /home/connectome/{User ID}
 4. Share dir: /data/connectome/{User ID} (in storage) <-> /Scratch/connectome/{User ID} (in master, node1, node2)
-
 
 
 ### Prepared (Hyun already do this!)
